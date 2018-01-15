@@ -29,6 +29,9 @@ type Config struct {
 	AnswerY int `yaml:"answer_y"`
 	AnswerW int `yaml:"answer_w"`
 	AnswerH int `yaml:"answer_h"`
+
+	//自动答题
+	Auto bool `yaml:"auto"`
 }
 
 var cfg *Config

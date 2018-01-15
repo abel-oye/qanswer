@@ -1,15 +1,88 @@
 # 冲顶大会 iphone6s
 debug: false
-device: ios
-ocr_type: tesseract
-wda_address: '127.0.0.1:8100'
-question_x: 30
-question_y: 290
-question_w: 650
-question_h: 190
-answer_x: 30
-answer_y: 500
+# 对应的设备类型：ios or android
+device: android
+# 使用的ocr工具：baidu or tesseract
+ocr_type: baidu
+# ios 设备连接wda的地址
+wda_address: '192.168.159.117:8100'
+
+#ios iphone6s
+# 截取题目的位置
+#question_x: 30
+#question_y: 290
+#question_w: 650
+#question_h: 190
+#answer_x: 30
+#answer_y: 500
+#answer_w: 680
+#answer_h: 370
+
+#android huawei 百万英雄
+#question_x: 100
+#question_y: 437
+#question_w: 890
+#question_h: 200
+#answer_x: 160
+#answer_y: 800
+#answer_w: 680
+#answer_h: 550
+
+#android huawei 冲顶大会
+#question_x: 100
+#question_y: 340
+#question_w: 890
+#question_h: 200
+#answer_x: 120
+#answer_y: 600
+#answer_w: 680
+#answer_h: 480
+
+#android huawei 八点半
+#question_x: 100
+#question_y: 287
+#question_w: 890
+#question_h: 200
+#answer_x: 160
+#answer_y: 580
+#answer_w: 680
+#answer_h: 580
+
+#android 360 西瓜
+question_x: 90
+question_y: 350
+question_w: 890
+question_h: 200
+answer_x: 140
+answer_y: 658
 answer_w: 680
-answer_h: 370
-baidu_api_key: xxx...
-baidu_secret_key: xxx...
+answer_h: 580
+
+#android 360 冲顶
+#question_x: 90
+#question_y: 350
+#question_w: 900
+#question_h: 200
+#answer_x: 140
+#answer_y: 590
+#answer_w: 680
+#answer_h: 580
+
+#android 360 芝士超人
+#question_x: 90
+#question_y: 350
+#question_w: 900
+#question_h: 200
+#answer_x: 110
+#answer_y: 590
+#answer_w: 680
+#answer_h: 580
+
+
+#当选用baidu ocr时，需要执行api_key和secret_key
+baidu_api_key: 'p3ot47p4aGDb46v5FF294occ'
+baidu_secret_key: 'nvkXTRPkkKz94s8iLeyvC8GBxyZtRvZy'
+
+tap: true
+
+auto: true

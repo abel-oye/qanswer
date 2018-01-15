@@ -10,9 +10,14 @@ import (
 	"github.com/fatih/color"
 	"github.com/ngaut/log"
 	termbox "github.com/nsf/termbox-go"
-	"github.com/silenceper/qanswer/config"
-	"github.com/silenceper/qanswer/proto"
-	"github.com/silenceper/qanswer/util"
+	"qanswer/config"
+	"qanswer/proto"
+	"qanswer/util"
+	"qanswer/search"
+
+	"qanswer/tap"
+	"math"
+	"strconv"
 )
 
 var cfgFilename = flag.String("config", "./config.yml", "配置文件路径")
@@ -116,17 +121,46 @@ func answerQuestion(cfg *config.Config) {
 	}
 
 	//搜索答案并显示
-	result := GetSearchResult(questionText, answerArr)
+	result := search.GetSearchResult(questionText, answerArr)
+	maxSearch := 0.0
+	maxShow := 0.0
+
+	for _, answerResult := range result {
+		for _, val := range answerResult {
+			maxSearch = math.Max(maxSearch,float64(val.Sum))
+			maxShow = math.Max(maxShow,float64(val.Freq))
+		}
+	}
+
 	for engine, answerResult := range result {
 		color.Red("================%s搜索==============", engine)
 		color.Cyan("%s \n", questionText)
 		color.Yellow("答案：")
 		for key, val := range answerResult {
-			color.Green("%s : 结果总数 %d ， 答案出现频率： %d", answerArr[key], val.Sum, val.Freq)
+			var sum string
+			var freq string
+
+			if val.Sum == int32(maxSearch){
+				sum = "【" + strconv.Itoa(int(val.Sum)) + "】"
+			}
+
+			if val.Freq == int32(maxShow){
+				freq = "【" +  strconv.Itoa(int(val.Freq)) + "】"
+			}
+			color.Green("%s : 结果总数 %d ， 答案出现频率： %d", answerArr[key], sum, freq)
 		}
 		color.Red("======================================")
 	}
 	color.Cyan("\n耗时：%v", time.Now().Sub(start))
+
+	autoAnswer(cfg,result)
+}
+
+func autoAnswer(cfg *config.Config,result map[string][]*search.SearchResult){
+	if cfg.Device == "android" {
+		x , y := "" , ""
+		tap.SendSwipe(x,y);
+	}
 }
 
 func processQuestion(text string) string {

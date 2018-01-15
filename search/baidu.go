@@ -1,14 +1,13 @@
-package qanswer
+package search
 
 import (
-	"fmt"
-	"net/url"
-	"regexp"
-	"strings"
-	"sync"
-
-	"github.com/ngaut/log"
-	"github.com/silenceper/qanswer/util"
+"fmt"
+"net/url"
+"regexp"
+"strings"
+"sync"
+"qanswer/util"
+"github.com/ngaut/log"
 )
 
 //SearchResult 搜索总数跟频率
